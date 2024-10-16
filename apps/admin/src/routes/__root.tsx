@@ -1,33 +1,40 @@
-import { Link, Outlet, createRootRoute, createRootRouteWithContext, useRouterState } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { trpcQueryUtils } from '../router'
+import {
+  Link,
+  Outlet,
+  createRootRoute,
+  createRootRouteWithContext,
+  useRouterState,
+} from "@tanstack/react-router";
+import { TanStackRouterDevtools } from "@tanstack/router-devtools";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import { trpcQueryUtils } from "../router";
 
 export interface RouterAppContext {
-  trpc: typeof trpcQueryUtils
+  trpc: typeof trpcQueryUtils;
 }
 
 export const Route = createRootRouteWithContext<RouterAppContext>()({
   component: RootComponent,
-})
+});
 
 function RootComponent() {
-  const isFetching = useRouterState({ select: (s) => s.isLoading })
+  const isFetching = useRouterState({ select: (s) => s.isLoading });
   return (
-    <>
+    <div className="font-poppins">
       <div className="p-2 flex gap-2 text-lg">
         <Link
           to="/"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
           activeOptions={{ exact: true }}
         >
           Home
-        </Link>{' '}
+        </Link>{" "}
         <Link
           to="/about"
           activeProps={{
-            className: 'font-bold',
+            className: "font-bold",
           }}
         >
           About
@@ -35,12 +42,11 @@ function RootComponent() {
       </div>
       <hr />
       {isFetching ? (
-        <div className='bg-grey-200 w-full text-center'>
-          Root Loading...
-        </div>
+        <div className="bg-grey-200 w-full text-center">Root Loading...</div>
       ) : null}
       <Outlet />
       <TanStackRouterDevtools position="bottom-right" />
-    </>
-  )
+      <ReactQueryDevtools position="left" buttonPosition="bottom-left" />
+    </div>
+  );
 }

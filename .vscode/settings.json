@@ -8,5 +8,5 @@
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true
   },
-  "editor.rulers": [86]
+  "editor.rulers": [96]
 }

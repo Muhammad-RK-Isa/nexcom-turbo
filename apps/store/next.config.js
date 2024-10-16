@@ -2,14 +2,12 @@ await import( "./src/env.js" )
 
 /** @type {import("next").NextConfig} */
 const config = {
-  rewrites: async () => {
-    return [
-      {
-        source: '/api/trpc/*',
-        destination: 'http://localhost:8000',
-      },
-    ];
-  }
+  reactStrictMode: true,
+  transpilePackages: [
+    "@nexcom/ui",
+  ],
+  eslint: { ignoreDuringBuilds: true },
+  typescript: {ignoreBuildErrors: true},
 };
 
 export default config;

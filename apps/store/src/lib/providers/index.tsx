@@ -1,14 +1,10 @@
-"use client"
+"use client";
 
-import React from 'react'
-import { TRPCReactProvider } from '~/lib/trpc/react'
+import React from "react";
+import { TRPCReactProvider } from "~/lib/trpc/react";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <TRPCReactProvider>
-      {children}
-    </TRPCReactProvider>
-  )
-}
+  return <TRPCReactProvider>{children}</TRPCReactProvider>;
+};
 
-export default Providers
+export default Providers;

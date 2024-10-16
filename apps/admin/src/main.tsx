@@ -1,18 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { RouterProvider } from '@tanstack/react-router'
+import "~/styles/globals.css"
 
-import { createRouter } from './router'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider } from "@tanstack/react-router";
 
-const router = createRouter()
+import { createRouter } from "./router";
 
-const rootElement = document.getElementById('root')!
+const router = createRouter();
+
+const rootElement = document.getElementById("root")!;
 
 if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement)
+  const root = ReactDOM.createRoot(rootElement);
   root.render(
     <React.StrictMode>
       <RouterProvider router={router} />
-    </React.StrictMode>
-  )
+    </React.StrictMode>,
+  );
 }

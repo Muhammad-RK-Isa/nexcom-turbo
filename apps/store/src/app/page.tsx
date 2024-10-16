@@ -1,14 +1,16 @@
-import React from 'react'
-import { api } from '~/lib/trpc/server'
+import { Button } from "@nexcom/ui/components/ui/button";
+import React from "react";
+import { api } from "~/lib/trpc/server";
 
 const Home = async () => {
-  const data = await api.mirror.query('Mirror is workinggggg!')
+  const data = await api.mirror.query("Mirror is workinggggg!");
   return (
     <div>
       Home
-      <p>{data}</p>
+      <br />
+      <Button>{data}</Button>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

@@ -3,11 +3,9 @@ import { z } from "zod";
 
 export const env = createEnv({
   server: {
-    NODE_ENV: z.enum([
-      "development",
-      "production",
-      "test",
-    ]).default("development"),
+    NODE_ENV: z
+      .enum(["development", "production", "test"])
+      .default("development"),
     SERVER_URL: z.string().url(),
   },
 
@@ -17,8 +15,7 @@ export const env = createEnv({
    */
   clientPrefix: "PUBLIC_",
 
-  client: {
-  },
+  client: {},
 
   /**
    * What object holds the environment variables at runtime. This is usually
