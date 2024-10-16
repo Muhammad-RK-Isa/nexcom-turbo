@@ -8,7 +8,5 @@ export const Route = createFileRoute("/")({
 });
 
 function HomeComponent() {
-  return (
-    <Charts/>
-  );
+  return <Charts />;
 }

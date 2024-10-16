@@ -1,14 +1,24 @@
 {
+  "extends": "@nexcom/tsconfig/base.json",
   "compilerOptions": {
-    "strict": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ES2022"
+    ],
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
       "~/*": ["./src/*"]
-    }
-  }
+    },
+    "module": "ESNext",
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mjs",
+    "**/*.js",
+    "postcss.config.mjs"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

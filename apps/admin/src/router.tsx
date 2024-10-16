@@ -1,6 +1,6 @@
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { unstable_httpBatchStreamLink, loggerLink } from "@trpc/client";
+import { unstable_httpBatchStreamLink, httpBatchLink } from "@trpc/client";
 import { createTRPCReact, createTRPCQueryUtils } from "@trpc/react-query";
 import { type AppRouter } from "@nexcom/server";
 
@@ -13,9 +13,15 @@ export const api = createTRPCReact<AppRouter>();
 
 const trpcClient = api.createClient({
   links: [
-    unstable_httpBatchStreamLink({
+    httpBatchLink({
       transformer: SuperJSON,
       url: "/api/trpc",
+      fetch: (url, opts) => {
+          return fetch(url, {
+            ...opts,
+            credentials: "include",
+          })
+        }
     }),
   ],
 });

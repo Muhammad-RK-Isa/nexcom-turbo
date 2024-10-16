@@ -1,0 +1,28 @@
+{
+  "name": "@nexcom/validators",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "clean": "git clean -xdf .cache .turbo dist node_modules",
+    "dev": "tsc",
+    "format": "prettier --check . --ignore-path ../../.gitignore",
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "@nexcom/db": "*",
+    "drizzle-zod": "^0.5.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@nexcom/eslint-config": "*",
+    "@nexcom/prettier-config": "*",
+    "@nexcom/tsconfig": "*",
+    "eslint": "^9.12.0",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
+  },
+  "prettier": "@nexcom/prettier-config"
+}

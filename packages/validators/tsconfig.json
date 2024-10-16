@@ -1,0 +1,9 @@
+{
+  "extends": "@nexcom/tsconfig/internal-package.json",
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

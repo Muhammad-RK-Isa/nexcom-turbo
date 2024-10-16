@@ -6,13 +6,14 @@ export default {
   content: [
     ...baseConfig.content,
     "./src/**/*.{ts,tsx}",
+    "../../packages/ui/src/**/*.{ts,tsx}",
   ],
   presets: [baseConfig],
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'],
-      }
-    }
-  }
+        poppins: ["Poppins", "sans-serif"],
+      },
+    },
+  },
 } satisfies Config;
