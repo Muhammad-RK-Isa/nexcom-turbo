@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "dev": "turbo watch dev --continue",
+    "dev": "turbo watch dev",
     "format": "bunx --bun prettier --write \"**/*.{ts,tsx,md}\"",
     "clean": "git clean -xdf node_modules",
     "clean:workspaces": "turbo run clean",

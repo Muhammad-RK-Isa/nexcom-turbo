@@ -24,7 +24,7 @@ function Profile() {
         variant='outline'
         onClick={async() => {
           await trpcQueryUtils.auth.signOut.fetch()
-          router.invalidate()
+          await trpcQueryUtils.auth.getUser.invalidate()
           await navigate({ to: '/sign-in' })
         }}
       >
