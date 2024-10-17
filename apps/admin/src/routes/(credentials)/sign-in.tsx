@@ -1,70 +1,70 @@
-import React from 'react'
-import { createFileRoute } from '@tanstack/react-router'
-import { Link, useNavigate, useRouter } from '@tanstack/react-router'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema } from '@nexcom/validators'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
-import { EyeOff, Eye, MoveRight, Loader2 } from 'lucide-react'
-import { zodSearchValidator } from '@tanstack/router-zod-adapter'
+import React from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { Link, useNavigate, useRouter } from "@tanstack/react-router";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema } from "@nexcom/validators";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import { EyeOff, Eye, MoveRight, Loader2 } from "lucide-react";
+import { zodSearchValidator } from "@tanstack/router-zod-adapter";
 
-import type { SignInInput } from '@nexcom/validators'
-import { Input } from '@nexcom/ui/components/ui/input'
-import { Button } from '@nexcom/ui/components/ui/button'
+import type { SignInInput } from "@nexcom/validators";
+import { Input } from "@nexcom/ui/components/ui/input";
+import { Button } from "@nexcom/ui/components/ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '@nexcom/ui/components/ui/form'
-import { z } from 'zod'
+} from "@nexcom/ui/components/ui/form";
+import { z } from "zod";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@nexcom/ui/components/ui/card'
-import { api, trpcQueryUtils } from '~/router'
+} from "@nexcom/ui/components/ui/card";
+import { api, trpcQueryUtils } from "~/router";
 
-export const Route = createFileRoute('/(credentials)/sign-in')({
+export const Route = createFileRoute("/(credentials)/sign-in")({
   component: () => <SignInForm />,
   validateSearch: zodSearchValidator(
-    z.object({ callbackUrl: z.string().default('/') }),
+    z.object({ callbackUrl: z.string().default("/") }),
   ),
-})
+});
 
 function SignInForm() {
-  const navigate = useNavigate()
-  const router = useRouter()
+  const navigate = useNavigate();
+  const router = useRouter();
 
-  const { callbackUrl } = Route.useSearch()
+  const { callbackUrl } = Route.useSearch();
 
-  const [showPassword, setShowPassword] = React.useState(false)
-  const [error, setError] = React.useState('')
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const form = useForm<SignInInput>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-  })
+  });
 
   const { mutate, isPending } = api.auth.signIn.useMutation({
     onSuccess: async () => {
-      toast.success("You are now signed in")
-      await trpcQueryUtils.auth.getUser.invalidate()
-      router.invalidate()
-      await navigate({ to: callbackUrl })
+      toast.success("You are now signed in");
+      await trpcQueryUtils.auth.getUser.invalidate();
+      router.invalidate();
+      await navigate({ to: callbackUrl });
     },
     onError: (err) => setError(err.message),
-  })
+  });
 
   const onSubmit = (values: SignInInput) => {
-    mutate(values)
-  }
+    mutate(values);
+  };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -91,8 +91,8 @@ function SignInForm() {
                         placeholder="email@example.com"
                         type="email"
                         onChange={(value) => {
-                          field.onChange(value)
-                          setError('')
+                          field.onChange(value);
+                          setError("");
                         }}
                       />
                     </FormControl>
@@ -110,10 +110,10 @@ function SignInForm() {
                         <Input
                           {...field}
                           placeholder="••••••••"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           onChange={(value) => {
-                            field.onChange(value)
-                            setError('')
+                            field.onChange(value);
+                            setError("");
                           }}
                         />
                         <Button
@@ -135,7 +135,7 @@ function SignInForm() {
                             />
                           )}
                           <span className="sr-only">
-                            {showPassword ? 'Hide password' : 'Show password'}
+                            {showPassword ? "Hide password" : "Show password"}
                           </span>
                         </Button>
                       </div>
@@ -163,7 +163,7 @@ function SignInForm() {
                 <div className="inline-flex items-center gap-1">
                   <span className="text-muted-foreground">No account?</span>
                   <Link
-                    to={'/sign-up'}
+                    to={"/sign-up"}
                     search={{ callbackUrl }}
                     className="font-medium underline-offset-2 hover:underline"
                   >
@@ -171,16 +171,13 @@ function SignInForm() {
                   </Link>
                 </div>
                 <Link
-                  href={`/reset-password?email=${form.getValues('email')}`}
+                  href={`/reset-password?email=${form.getValues("email")}`}
                   className="font-medium underline-offset-2 hover:underline"
                 >
                   Reset Password
                 </Link>
               </div>
-              <Button  
-                type="submit"
-                disabled={isPending}
-              >
+              <Button type="submit" disabled={isPending}>
                 {isPending ? (
                   <>
                     <Loader2 className="mr-2 size-4 animate-spin" />
@@ -198,7 +195,7 @@ function SignInForm() {
                 variant="secondary"
                 type="button"
                 className="border-2"
-                onClick={() => toast.info('Yet to be implemented.')}
+                onClick={() => toast.info("Yet to be implemented.")}
               >
                 Continue with Google
               </Button>
@@ -207,5 +204,5 @@ function SignInForm() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

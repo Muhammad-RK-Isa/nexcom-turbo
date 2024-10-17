@@ -1,74 +1,76 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema, signUpSchema } from '@nexcom/validators'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signInSchema, signUpSchema } from "@nexcom/validators";
 import {
   createFileRoute,
   Link,
   useNavigate,
   useRouter,
-} from '@tanstack/react-router'
-import { zodSearchValidator } from '@tanstack/router-zod-adapter'
-import { Eye, EyeOff, Loader2, MoveRight } from 'lucide-react'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'sonner'
+} from "@tanstack/react-router";
+import { zodSearchValidator } from "@tanstack/router-zod-adapter";
+import { Eye, EyeOff, Loader2, MoveRight } from "lucide-react";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
-import { Button } from '@nexcom/ui/components/ui/button'
+import { Button } from "@nexcom/ui/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@nexcom/ui/components/ui/card'
+} from "@nexcom/ui/components/ui/card";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '@nexcom/ui/components/ui/form'
-import { Input } from '@nexcom/ui/components/ui/input'
-import type { SignUpInput } from '@nexcom/validators'
-import { z } from 'zod'
-import { api, trpcQueryUtils } from '~/router'
+} from "@nexcom/ui/components/ui/form";
+import { Input } from "@nexcom/ui/components/ui/input";
+import type { SignUpInput } from "@nexcom/validators";
+import { z } from "zod";
+import { api, trpcQueryUtils } from "~/router";
 
-export const Route = createFileRoute('/(credentials)/sign-up')({
+export const Route = createFileRoute("/(credentials)/sign-up")({
   component: () => <SignUpForm />,
   validateSearch: zodSearchValidator(
-    z.object({ callbackUrl: z.string().default('/') }),
+    z.object({ callbackUrl: z.string().default("/") }),
   ),
-})
+});
 
 function SignUpForm() {
-  const navigate = useNavigate()
-  const router = useRouter()
+  const navigate = useNavigate();
+  const router = useRouter();
 
-  const { callbackUrl } = Route.useSearch()
+  const { callbackUrl } = Route.useSearch();
 
-  const [showPassword, setShowPassword] = React.useState(false)
-  const [error, setError] = React.useState('')
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const form = useForm<SignUpInput>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
-  })
+  });
 
   const { mutate, isPending } = api.auth.signUp.useMutation({
     onSuccess: async () => {
-      toast.success('Account created', { description: 'You are now signed in' })
-      await trpcQueryUtils.auth.getUser.invalidate()
-      router.invalidate()
-      await navigate({ to: callbackUrl })
+      toast.success("Account created", {
+        description: "You are now signed in",
+      });
+      await trpcQueryUtils.auth.getUser.invalidate();
+      router.invalidate();
+      await navigate({ to: callbackUrl });
     },
-    onError: (err) => setError(err.message)
-  })
+    onError: (err) => setError(err.message),
+  });
 
   const onSubmit = (values: SignUpInput) => {
-    mutate(values)
-  }
+    mutate(values);
+  };
 
   return (
     <div className="flex items-center justify-center h-screen">
@@ -94,8 +96,8 @@ function SignUpForm() {
                         {...field}
                         placeholder="Muhammad Isa"
                         onChange={(value) => {
-                          field.onChange(value)
-                          setError('')
+                          field.onChange(value);
+                          setError("");
                         }}
                       />
                     </FormControl>
@@ -114,8 +116,8 @@ function SignUpForm() {
                         placeholder="email@example.com"
                         type="email"
                         onChange={(value) => {
-                          field.onChange(value)
-                          setError('')
+                          field.onChange(value);
+                          setError("");
                         }}
                       />
                     </FormControl>
@@ -133,10 +135,10 @@ function SignUpForm() {
                         <Input
                           {...field}
                           placeholder="••••••••"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           onChange={(value) => {
-                            field.onChange(value)
-                            setError('')
+                            field.onChange(value);
+                            setError("");
                           }}
                         />
                         <Button
@@ -158,7 +160,7 @@ function SignUpForm() {
                             />
                           )}
                           <span className="sr-only">
-                            {showPassword ? 'Hide password' : 'Show password'}
+                            {showPassword ? "Hide password" : "Show password"}
                           </span>
                         </Button>
                       </div>
@@ -177,10 +179,10 @@ function SignUpForm() {
                         <Input
                           {...field}
                           placeholder="••••••••"
-                          type={showPassword ? 'text' : 'password'}
+                          type={showPassword ? "text" : "password"}
                           onChange={(value) => {
-                            field.onChange(value)
-                            setError('')
+                            field.onChange(value);
+                            setError("");
                           }}
                         />
                         <Button
@@ -202,7 +204,7 @@ function SignUpForm() {
                             />
                           )}
                           <span className="sr-only">
-                            {showPassword ? 'Hide password' : 'Show password'}
+                            {showPassword ? "Hide password" : "Show password"}
                           </span>
                         </Button>
                       </div>
@@ -230,7 +232,7 @@ function SignUpForm() {
                 <div className="inline-flex items-center gap-1">
                   <span className="text-muted-foreground">No account?</span>
                   <Link
-                    to={'/sign-up'}
+                    to={"/sign-up"}
                     search={{ callbackUrl }}
                     className="font-medium underline-offset-2 hover:underline"
                   >
@@ -238,16 +240,13 @@ function SignUpForm() {
                   </Link>
                 </div>
                 <Link
-                  href={`/reset-password?email=${form.getValues('email')}`}
+                  href={`/reset-password?email=${form.getValues("email")}`}
                   className="font-medium underline-offset-2 hover:underline"
                 >
                   Reset Password
                 </Link>
               </div>
-              <Button
-                type="submit"
-                disabled={isPending}
-              >
+              <Button type="submit" disabled={isPending}>
                 {isPending ? (
                   <>
                     <Loader2 className="mr-2 size-4 animate-spin" />
@@ -265,7 +264,7 @@ function SignUpForm() {
                 variant="secondary"
                 type="button"
                 className="border-2"
-                onClick={() => toast.info('Yet to be implemented.')}
+                onClick={() => toast.info("Yet to be implemented.")}
               >
                 Continue with Google
               </Button>
@@ -274,5 +273,5 @@ function SignUpForm() {
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

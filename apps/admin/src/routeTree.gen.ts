@@ -10,157 +10,157 @@
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
-import { Route as AuthImport } from './routes/_auth'
-import { Route as IndexImport } from './routes/index'
-import { Route as AuthProfileImport } from './routes/_auth/profile'
-import { Route as credentialsSignUpImport } from './routes/(credentials)/sign-up'
-import { Route as credentialsSignInImport } from './routes/(credentials)/sign-in'
+import { Route as rootRoute } from "./routes/__root";
+import { Route as AboutImport } from "./routes/about";
+import { Route as AuthImport } from "./routes/_auth";
+import { Route as IndexImport } from "./routes/index";
+import { Route as AuthProfileImport } from "./routes/_auth/profile";
+import { Route as credentialsSignUpImport } from "./routes/(credentials)/sign-up";
+import { Route as credentialsSignInImport } from "./routes/(credentials)/sign-in";
 
 // Create/Update Routes
 
 const AboutRoute = AboutImport.update({
-  path: '/about',
+  path: "/about",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AuthRoute = AuthImport.update({
-  id: '/_auth',
+  id: "/_auth",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const IndexRoute = IndexImport.update({
-  path: '/',
+  path: "/",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const AuthProfileRoute = AuthProfileImport.update({
-  path: '/profile',
+  path: "/profile",
   getParentRoute: () => AuthRoute,
-} as any)
+} as any);
 
 const credentialsSignUpRoute = credentialsSignUpImport.update({
-  path: '/sign-up',
+  path: "/sign-up",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 const credentialsSignInRoute = credentialsSignInImport.update({
-  path: '/sign-in',
+  path: "/sign-in",
   getParentRoute: () => rootRoute,
-} as any)
+} as any);
 
 // Populate the FileRoutesByPath interface
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
-      parentRoute: typeof rootRoute
-    }
-    '/(credentials)/sign-in': {
-      id: '/sign-in'
-      path: '/sign-in'
-      fullPath: '/sign-in'
-      preLoaderRoute: typeof credentialsSignInImport
-      parentRoute: typeof rootRoute
-    }
-    '/(credentials)/sign-up': {
-      id: '/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
-      preLoaderRoute: typeof credentialsSignUpImport
-      parentRoute: typeof rootRoute
-    }
-    '/_auth/profile': {
-      id: '/_auth/profile'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AuthProfileImport
-      parentRoute: typeof AuthImport
-    }
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_auth": {
+      id: "/_auth";
+      path: "";
+      fullPath: "";
+      preLoaderRoute: typeof AuthImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/about": {
+      id: "/about";
+      path: "/about";
+      fullPath: "/about";
+      preLoaderRoute: typeof AboutImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(credentials)/sign-in": {
+      id: "/sign-in";
+      path: "/sign-in";
+      fullPath: "/sign-in";
+      preLoaderRoute: typeof credentialsSignInImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/(credentials)/sign-up": {
+      id: "/sign-up";
+      path: "/sign-up";
+      fullPath: "/sign-up";
+      preLoaderRoute: typeof credentialsSignUpImport;
+      parentRoute: typeof rootRoute;
+    };
+    "/_auth/profile": {
+      id: "/_auth/profile";
+      path: "/profile";
+      fullPath: "/profile";
+      preLoaderRoute: typeof AuthProfileImport;
+      parentRoute: typeof AuthImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface AuthRouteChildren {
-  AuthProfileRoute: typeof AuthProfileRoute
+  AuthProfileRoute: typeof AuthProfileRoute;
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthProfileRoute: AuthProfileRoute,
-}
+};
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '': typeof AuthRouteWithChildren
-  '/about': typeof AboutRoute
-  '/sign-in': typeof credentialsSignInRoute
-  '/sign-up': typeof credentialsSignUpRoute
-  '/profile': typeof AuthProfileRoute
+  "/": typeof IndexRoute;
+  "": typeof AuthRouteWithChildren;
+  "/about": typeof AboutRoute;
+  "/sign-in": typeof credentialsSignInRoute;
+  "/sign-up": typeof credentialsSignUpRoute;
+  "/profile": typeof AuthProfileRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '': typeof AuthRouteWithChildren
-  '/about': typeof AboutRoute
-  '/sign-in': typeof credentialsSignInRoute
-  '/sign-up': typeof credentialsSignUpRoute
-  '/profile': typeof AuthProfileRoute
+  "/": typeof IndexRoute;
+  "": typeof AuthRouteWithChildren;
+  "/about": typeof AboutRoute;
+  "/sign-in": typeof credentialsSignInRoute;
+  "/sign-up": typeof credentialsSignUpRoute;
+  "/profile": typeof AuthProfileRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexRoute
-  '/_auth': typeof AuthRouteWithChildren
-  '/about': typeof AboutRoute
-  '/sign-in': typeof credentialsSignInRoute
-  '/sign-up': typeof credentialsSignUpRoute
-  '/_auth/profile': typeof AuthProfileRoute
+  __root__: typeof rootRoute;
+  "/": typeof IndexRoute;
+  "/_auth": typeof AuthRouteWithChildren;
+  "/about": typeof AboutRoute;
+  "/sign-in": typeof credentialsSignInRoute;
+  "/sign-up": typeof credentialsSignUpRoute;
+  "/_auth/profile": typeof AuthProfileRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '' | '/about' | '/sign-in' | '/sign-up' | '/profile'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '' | '/about' | '/sign-in' | '/sign-up' | '/profile'
+  fileRoutesByFullPath: FileRoutesByFullPath;
+  fullPaths: "/" | "" | "/about" | "/sign-in" | "/sign-up" | "/profile";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "" | "/about" | "/sign-in" | "/sign-up" | "/profile";
   id:
-    | '__root__'
-    | '/'
-    | '/_auth'
-    | '/about'
-    | '/sign-in'
-    | '/sign-up'
-    | '/_auth/profile'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/_auth"
+    | "/about"
+    | "/sign-in"
+    | "/sign-up"
+    | "/_auth/profile";
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  AuthRoute: typeof AuthRouteWithChildren
-  AboutRoute: typeof AboutRoute
-  credentialsSignInRoute: typeof credentialsSignInRoute
-  credentialsSignUpRoute: typeof credentialsSignUpRoute
+  IndexRoute: typeof IndexRoute;
+  AuthRoute: typeof AuthRouteWithChildren;
+  AboutRoute: typeof AboutRoute;
+  credentialsSignInRoute: typeof credentialsSignInRoute;
+  credentialsSignUpRoute: typeof credentialsSignUpRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -169,11 +169,11 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   credentialsSignInRoute: credentialsSignInRoute,
   credentialsSignUpRoute: credentialsSignUpRoute,
-}
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* prettier-ignore-end */
 

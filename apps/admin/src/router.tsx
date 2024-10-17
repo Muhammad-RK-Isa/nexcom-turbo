@@ -17,11 +17,11 @@ const trpcClient = api.createClient({
       transformer: SuperJSON,
       url: "/api/trpc",
       fetch: (url, opts) => {
-          return fetch(url, {
-            ...opts,
-            credentials: "include",
-          })
-        }
+        return fetch(url, {
+          ...opts,
+          credentials: "include",
+        });
+      },
     }),
   ],
 });

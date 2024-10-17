@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { useMediaQuery } from "usehooks-ts"
+import { useMediaQuery } from "usehooks-ts";
 
 import { trpcQueryUtils } from "../router";
 import { Toaster } from "@nexcom/ui/components/ui/sonner";
@@ -21,7 +21,7 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 
 function RootComponent() {
   const isFetching = useRouterState({ select: (s) => s.isLoading });
-  const isDesktop = useMediaQuery('(min-width: 1024px)')
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   return (
     <div className="font-poppins">
       <div className="p-2 flex gap-2 text-lg">
@@ -64,10 +64,7 @@ function RootComponent() {
         <div className="bg-grey-200 w-full text-center">Root Loading...</div>
       ) : null}
       <Outlet />
-      <Toaster
-        richColors={true}
-        expand={isDesktop}
-      />
+      <Toaster richColors={true} expand={isDesktop} />
       <TanStackRouterDevtools position="bottom-right" />
       <ReactQueryDevtools position="left" buttonPosition="bottom-left" />
     </div>

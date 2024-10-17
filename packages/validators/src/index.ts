@@ -34,7 +34,10 @@ export const signUpSchema = z
 export type SignUpInput = z.infer<typeof signUpSchema>;
 
 export const signInSchema = z.object({
-  password: z.string().min(1, { message: "Password is required" }).max(255, { message: "Password cannot exceed 255 characters" }),
+  password: z
+    .string()
+    .min(1, { message: "Password is required" })
+    .max(255, { message: "Password cannot exceed 255 characters" }),
   email: z.string().email({ message: "Invalid email address" }),
 });
 
