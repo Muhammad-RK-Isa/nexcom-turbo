@@ -1,0 +1,52 @@
+{
+  "name": "@nexcom/admin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "dev": "bunx --bun vite --port=9000",
+    "build": "bunx --bun vite build",
+    "serve": "bunx --bunvite preview",
+    "start": "bunx --bun vite"
+  },
+  "devDependencies": {
+    "@nexcom/eslint-config": "*",
+    "@nexcom/prettier-config": "*",
+    "@nexcom/tsconfig": "*",
+    "@tanstack/router-plugin": "^1.66.1",
+    "@types/node": "^22.7.5",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.12.0",
+    "postcss": "^8.4.47",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^5.6.3",
+    "unplugin-fonts": "^1.1.1",
+    "vite": "^5.4.8"
+  },
+  "dependencies": {
+    "@nexcom/server": "*",
+    "@nexcom/ui": "*",
+    "@nexcom/validators": "*",
+    "@t3-oss/env-core": "^0.11.1",
+    "@tanstack/react-query": "^5.59.15",
+    "@tanstack/react-query-devtools": "^5.59.15",
+    "@tanstack/react-router": "^1.67.0",
+    "@tanstack/router-devtools": "^1.67.0",
+    "@tanstack/router-zod-adapter": "^1.69.1",
+    "@trpc/client": "^11.0.0-rc.576",
+    "@trpc/react-query": "^11.0.0-rc.576",
+    "lucide-react": "^0.453.0",
+    "path": "^0.12.7",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "superjson": "^2.2.1",
+    "usehooks-ts": "^3.1.0",
+    "zod": "^3.23.8"
+  },
+  "prettier": "@nexcom/prettier-config"
+}

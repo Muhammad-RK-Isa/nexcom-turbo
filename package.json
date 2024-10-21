@@ -1,0 +1,39 @@
+{
+  "name": "nexcom-turbo",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo watch dev",
+    "format": "bunx --bun prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "git clean -xdf node_modules",
+    "clean:workspaces": "turbo run clean",
+    "db:push": "bunx --bun turbo -F @nexcom/db push",
+    "db:studio": "bunx --bun turbo -F @nexcom/db studio",
+    "typecheck": "bunx --bun turbo run typecheck",
+    "lint": "bunx --bun turbo run lint --continue -- --cache --cache-location .cache/.eslintcache",
+    "lint:fix": "bunx --bun turbo run lint --continue -- --fix --cache --cache-location .cache/.eslintcache",
+    "lint:ws": "bunx --bun sherif@latest"
+  },
+  "devDependencies": {
+    "eslint-config": "^0.3.0",
+    "prettier": "^3.3.3",
+    "turbo": "^2.1.3",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20.16.0"
+  },
+  "packageManager": "bun@1.1.29",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tooling/*"
+  ],
+  "trustedDependencies": [
+    "core-js-pure",
+    "es5-ext",
+    "esbuild",
+    "sharp"
+  ],
+  "prettier": "@nexcom/prettier-config"
+}

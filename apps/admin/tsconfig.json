@@ -1,0 +1,24 @@
+{
+  "extends": "@nexcom/tsconfig/base.json",
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "ES2022"
+    ],
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./src/*"]
+    },
+    "module": "ESNext",
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mjs",
+    "**/*.js",
+    "postcss.config.mjs"
+  ],
+  "exclude": ["node_modules", "dist"]
+}

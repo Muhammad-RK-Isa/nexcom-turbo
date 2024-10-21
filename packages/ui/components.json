@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "unused.css",
+    "baseColor": "zinc",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@nexcom/ui/components",
+    "ui": "@nexcom/ui/components/ui",
+    "utils": "@nexcom/ui/lib/utils",
+    "lib": "@nexcom/ui/lib",
+    "hooks": "@nexcom/ui/hooks"
+  }
+}
