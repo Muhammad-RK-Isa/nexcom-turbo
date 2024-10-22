@@ -10,170 +10,205 @@
 
 // Import Routes
 
-import { Route as rootRoute } from "./routes/__root";
-import { Route as AboutImport } from "./routes/about";
-import { Route as AuthImport } from "./routes/_auth";
-import { Route as IndexImport } from "./routes/index";
-import { Route as AuthProfileImport } from "./routes/_auth/profile";
-import { Route as credentialsSignUpImport } from "./routes/(credentials)/sign-up";
-import { Route as credentialsSignInImport } from "./routes/(credentials)/sign-in";
+import { Route as rootRoute } from './routes/__root'
+import { Route as RootLayoutImport } from './routes/_root-layout'
+import { Route as AuthLayoutImport } from './routes/_auth-layout'
+import { Route as RootLayoutIndexImport } from './routes/_root-layout/index'
+import { Route as RootLayoutProfileImport } from './routes/_root-layout/profile'
+import { Route as RootLayoutAboutImport } from './routes/_root-layout/about'
+import { Route as AuthLayoutSignInImport } from './routes/_auth-layout/sign-in'
+import { Route as AuthLayoutCreateFirstUserImport } from './routes/_auth-layout/create-first-user'
 
 // Create/Update Routes
 
-const AboutRoute = AboutImport.update({
-  path: "/about",
+const RootLayoutRoute = RootLayoutImport.update({
+  id: '/_root-layout',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
-const AuthRoute = AuthImport.update({
-  id: "/_auth",
+const AuthLayoutRoute = AuthLayoutImport.update({
+  id: '/_auth-layout',
   getParentRoute: () => rootRoute,
-} as any);
+} as any)
 
-const IndexRoute = IndexImport.update({
-  path: "/",
-  getParentRoute: () => rootRoute,
-} as any);
+const RootLayoutIndexRoute = RootLayoutIndexImport.update({
+  path: '/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
 
-const AuthProfileRoute = AuthProfileImport.update({
-  path: "/profile",
-  getParentRoute: () => AuthRoute,
-} as any);
+const RootLayoutProfileRoute = RootLayoutProfileImport.update({
+  path: '/profile',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
 
-const credentialsSignUpRoute = credentialsSignUpImport.update({
-  path: "/sign-up",
-  getParentRoute: () => rootRoute,
-} as any);
+const RootLayoutAboutRoute = RootLayoutAboutImport.update({
+  path: '/about',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
 
-const credentialsSignInRoute = credentialsSignInImport.update({
-  path: "/sign-in",
-  getParentRoute: () => rootRoute,
-} as any);
+const AuthLayoutSignInRoute = AuthLayoutSignInImport.update({
+  path: '/sign-in',
+  getParentRoute: () => AuthLayoutRoute,
+} as any)
+
+const AuthLayoutCreateFirstUserRoute = AuthLayoutCreateFirstUserImport.update({
+  path: '/create-first-user',
+  getParentRoute: () => AuthLayoutRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
-declare module "@tanstack/react-router" {
+declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    "/": {
-      id: "/";
-      path: "/";
-      fullPath: "/";
-      preLoaderRoute: typeof IndexImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_auth": {
-      id: "/_auth";
-      path: "";
-      fullPath: "";
-      preLoaderRoute: typeof AuthImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/about": {
-      id: "/about";
-      path: "/about";
-      fullPath: "/about";
-      preLoaderRoute: typeof AboutImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/(credentials)/sign-in": {
-      id: "/sign-in";
-      path: "/sign-in";
-      fullPath: "/sign-in";
-      preLoaderRoute: typeof credentialsSignInImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/(credentials)/sign-up": {
-      id: "/sign-up";
-      path: "/sign-up";
-      fullPath: "/sign-up";
-      preLoaderRoute: typeof credentialsSignUpImport;
-      parentRoute: typeof rootRoute;
-    };
-    "/_auth/profile": {
-      id: "/_auth/profile";
-      path: "/profile";
-      fullPath: "/profile";
-      preLoaderRoute: typeof AuthProfileImport;
-      parentRoute: typeof AuthImport;
-    };
+    '/_auth-layout': {
+      id: '/_auth-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthLayoutImport
+      parentRoute: typeof rootRoute
+    }
+    '/_root-layout': {
+      id: '/_root-layout'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof RootLayoutImport
+      parentRoute: typeof rootRoute
+    }
+    '/_auth-layout/create-first-user': {
+      id: '/_auth-layout/create-first-user'
+      path: '/create-first-user'
+      fullPath: '/create-first-user'
+      preLoaderRoute: typeof AuthLayoutCreateFirstUserImport
+      parentRoute: typeof AuthLayoutImport
+    }
+    '/_auth-layout/sign-in': {
+      id: '/_auth-layout/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof AuthLayoutSignInImport
+      parentRoute: typeof AuthLayoutImport
+    }
+    '/_root-layout/about': {
+      id: '/_root-layout/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof RootLayoutAboutImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/profile': {
+      id: '/_root-layout/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof RootLayoutProfileImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/': {
+      id: '/_root-layout/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof RootLayoutIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
   }
 }
 
 // Create and export the route tree
 
-interface AuthRouteChildren {
-  AuthProfileRoute: typeof AuthProfileRoute;
+interface AuthLayoutRouteChildren {
+  AuthLayoutCreateFirstUserRoute: typeof AuthLayoutCreateFirstUserRoute
+  AuthLayoutSignInRoute: typeof AuthLayoutSignInRoute
 }
 
-const AuthRouteChildren: AuthRouteChildren = {
-  AuthProfileRoute: AuthProfileRoute,
-};
+const AuthLayoutRouteChildren: AuthLayoutRouteChildren = {
+  AuthLayoutCreateFirstUserRoute: AuthLayoutCreateFirstUserRoute,
+  AuthLayoutSignInRoute: AuthLayoutSignInRoute,
+}
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
+const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
+  AuthLayoutRouteChildren,
+)
+
+interface RootLayoutRouteChildren {
+  RootLayoutAboutRoute: typeof RootLayoutAboutRoute
+  RootLayoutProfileRoute: typeof RootLayoutProfileRoute
+  RootLayoutIndexRoute: typeof RootLayoutIndexRoute
+}
+
+const RootLayoutRouteChildren: RootLayoutRouteChildren = {
+  RootLayoutAboutRoute: RootLayoutAboutRoute,
+  RootLayoutProfileRoute: RootLayoutProfileRoute,
+  RootLayoutIndexRoute: RootLayoutIndexRoute,
+}
+
+const RootLayoutRouteWithChildren = RootLayoutRoute._addFileChildren(
+  RootLayoutRouteChildren,
+)
 
 export interface FileRoutesByFullPath {
-  "/": typeof IndexRoute;
-  "": typeof AuthRouteWithChildren;
-  "/about": typeof AboutRoute;
-  "/sign-in": typeof credentialsSignInRoute;
-  "/sign-up": typeof credentialsSignUpRoute;
-  "/profile": typeof AuthProfileRoute;
+  '': typeof RootLayoutRouteWithChildren
+  '/create-first-user': typeof AuthLayoutCreateFirstUserRoute
+  '/sign-in': typeof AuthLayoutSignInRoute
+  '/about': typeof RootLayoutAboutRoute
+  '/profile': typeof RootLayoutProfileRoute
+  '/': typeof RootLayoutIndexRoute
 }
 
 export interface FileRoutesByTo {
-  "/": typeof IndexRoute;
-  "": typeof AuthRouteWithChildren;
-  "/about": typeof AboutRoute;
-  "/sign-in": typeof credentialsSignInRoute;
-  "/sign-up": typeof credentialsSignUpRoute;
-  "/profile": typeof AuthProfileRoute;
+  '': typeof AuthLayoutRouteWithChildren
+  '/create-first-user': typeof AuthLayoutCreateFirstUserRoute
+  '/sign-in': typeof AuthLayoutSignInRoute
+  '/about': typeof RootLayoutAboutRoute
+  '/profile': typeof RootLayoutProfileRoute
+  '/': typeof RootLayoutIndexRoute
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute;
-  "/": typeof IndexRoute;
-  "/_auth": typeof AuthRouteWithChildren;
-  "/about": typeof AboutRoute;
-  "/sign-in": typeof credentialsSignInRoute;
-  "/sign-up": typeof credentialsSignUpRoute;
-  "/_auth/profile": typeof AuthProfileRoute;
+  __root__: typeof rootRoute
+  '/_auth-layout': typeof AuthLayoutRouteWithChildren
+  '/_root-layout': typeof RootLayoutRouteWithChildren
+  '/_auth-layout/create-first-user': typeof AuthLayoutCreateFirstUserRoute
+  '/_auth-layout/sign-in': typeof AuthLayoutSignInRoute
+  '/_root-layout/about': typeof RootLayoutAboutRoute
+  '/_root-layout/profile': typeof RootLayoutProfileRoute
+  '/_root-layout/': typeof RootLayoutIndexRoute
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths: "/" | "" | "/about" | "/sign-in" | "/sign-up" | "/profile";
-  fileRoutesByTo: FileRoutesByTo;
-  to: "/" | "" | "/about" | "/sign-in" | "/sign-up" | "/profile";
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | ''
+    | '/create-first-user'
+    | '/sign-in'
+    | '/about'
+    | '/profile'
+    | '/'
+  fileRoutesByTo: FileRoutesByTo
+  to: '' | '/create-first-user' | '/sign-in' | '/about' | '/profile' | '/'
   id:
-    | "__root__"
-    | "/"
-    | "/_auth"
-    | "/about"
-    | "/sign-in"
-    | "/sign-up"
-    | "/_auth/profile";
-  fileRoutesById: FileRoutesById;
+    | '__root__'
+    | '/_auth-layout'
+    | '/_root-layout'
+    | '/_auth-layout/create-first-user'
+    | '/_auth-layout/sign-in'
+    | '/_root-layout/about'
+    | '/_root-layout/profile'
+    | '/_root-layout/'
+  fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute;
-  AuthRoute: typeof AuthRouteWithChildren;
-  AboutRoute: typeof AboutRoute;
-  credentialsSignInRoute: typeof credentialsSignInRoute;
-  credentialsSignUpRoute: typeof credentialsSignUpRoute;
+  AuthLayoutRoute: typeof AuthLayoutRouteWithChildren
+  RootLayoutRoute: typeof RootLayoutRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  AuthRoute: AuthRouteWithChildren,
-  AboutRoute: AboutRoute,
-  credentialsSignInRoute: credentialsSignInRoute,
-  credentialsSignUpRoute: credentialsSignUpRoute,
-};
+  AuthLayoutRoute: AuthLayoutRouteWithChildren,
+  RootLayoutRoute: RootLayoutRouteWithChildren,
+}
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>();
+  ._addFileTypes<FileRouteTypes>()
 
 /* prettier-ignore-end */
 
@@ -183,34 +218,44 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/",
-        "/_auth",
-        "/about",
-        "/sign-in",
-        "/sign-up"
+        "/_auth-layout",
+        "/_root-layout"
       ]
     },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/_auth": {
-      "filePath": "_auth.tsx",
+    "/_auth-layout": {
+      "filePath": "_auth-layout.tsx",
       "children": [
-        "/_auth/profile"
+        "/_auth-layout/create-first-user",
+        "/_auth-layout/sign-in"
       ]
     },
-    "/about": {
-      "filePath": "about.tsx"
+    "/_root-layout": {
+      "filePath": "_root-layout.tsx",
+      "children": [
+        "/_root-layout/about",
+        "/_root-layout/profile",
+        "/_root-layout/"
+      ]
     },
-    "/sign-in": {
-      "filePath": "(credentials)/sign-in.tsx"
+    "/_auth-layout/create-first-user": {
+      "filePath": "_auth-layout/create-first-user.tsx",
+      "parent": "/_auth-layout"
     },
-    "/sign-up": {
-      "filePath": "(credentials)/sign-up.tsx"
+    "/_auth-layout/sign-in": {
+      "filePath": "_auth-layout/sign-in.tsx",
+      "parent": "/_auth-layout"
     },
-    "/_auth/profile": {
-      "filePath": "_auth/profile.tsx",
-      "parent": "/_auth"
+    "/_root-layout/about": {
+      "filePath": "_root-layout/about.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/profile": {
+      "filePath": "_root-layout/profile.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/": {
+      "filePath": "_root-layout/index.tsx",
+      "parent": "/_root-layout"
     }
   }
 }

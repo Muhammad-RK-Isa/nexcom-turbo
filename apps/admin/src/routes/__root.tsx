@@ -1,5 +1,4 @@
 import {
-  Link,
   Outlet,
   createRootRouteWithContext,
   useRouterState,
@@ -10,9 +9,11 @@ import { useMediaQuery } from "usehooks-ts";
 
 import { trpcQueryUtils } from "../router";
 import { Toaster } from "@nexcom/ui/components/ui/sonner";
+import { TooltipProvider } from "@nexcom/ui/components/ui/tooltip";
+import { useTheme } from "~/components/theme-provider";
 
 export interface RouterAppContext {
-  trpc: typeof trpcQueryUtils;
+  trpcQueryUtils: typeof trpcQueryUtils;
 }
 
 export const Route = createRootRouteWithContext<RouterAppContext>()({
@@ -20,53 +21,27 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
 });
 
 function RootComponent() {
-  const isFetching = useRouterState({ select: (s) => s.isLoading });
-  const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const isFetching = useRouterState({ select: (s) => s.isLoading })
+
+  const isDesktop = useMediaQuery("(min-width: 1024px)")
+
+  const { theme } = useTheme()
+
   return (
-    <div className="font-poppins">
-      <div className="p-2 flex gap-2 text-lg">
-        <Link
-          to="/"
-          activeProps={{
-            className: "font-bold",
-          }}
-          activeOptions={{ exact: true }}
-        >
-          Home
-        </Link>{" "}
-        <Link
-          to="/about"
-          activeProps={{
-            className: "font-bold",
-          }}
-        >
-          About
-        </Link>
-        <Link
-          to="/profile"
-          activeProps={{
-            className: "font-bold",
-          }}
-        >
-          Profile
-        </Link>
-        <Link
-          to="/sign-in"
-          activeProps={{
-            className: "font-bold",
-          }}
-        >
-          Sign in
-        </Link>
-      </div>
-      <hr />
+    <TooltipProvider>
       {isFetching ? (
-        <div className="bg-grey-200 w-full text-center">Root Loading...</div>
+        <div className='w-full text-center'>
+          Root loading...
+        </div>
       ) : null}
       <Outlet />
-      <Toaster richColors={true} expand={isDesktop} />
+      <Toaster
+        theme={theme}
+        richColors
+        expand={isDesktop}
+      />
+      <ReactQueryDevtools position='right' buttonPosition='top-right' />
       <TanStackRouterDevtools position="bottom-right" />
-      <ReactQueryDevtools position="left" buttonPosition="bottom-left" />
-    </div>
-  );
+    </TooltipProvider>
+  )
 }

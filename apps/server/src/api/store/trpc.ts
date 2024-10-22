@@ -1,10 +1,10 @@
+import { db } from "@nexcom/db/client";
 import { initTRPC, TRPCError } from "@trpc/server";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 import SuperJSON from "superjson";
-import { db } from "@nexcom/db/client";
 
 import { ZodError } from "zod";
-import { lucia } from "../auth/lucia";
+import { lucia } from "../../auth/lucia";
 
 export const createTRPCContext = async (opts: FetchCreateContextFnOptions) => {
   const { req } = opts;

@@ -1,18 +1,28 @@
-import type { SignUpInput } from "@nexcom/validators";
-import type { TRPCContext } from "../trpc";
-import postgres from "postgres";
-import { TRPCError } from "@trpc/server";
 import { users } from "@nexcom/db/schema";
-import { Scrypt } from "lucia";
-import { lucia } from "../../auth/lucia";
+import type { CreateFirstUserInput} from "@nexcom/validators";
+import { TRPCError } from "@trpc/server";
+import { Scrypt } from "oslo/password";
+import postgres from "postgres";
+import { lucia } from "../../../auth/lucia";
+import type { AdminContext } from "../trpc";
 
-export async function signUp(ctx: TRPCContext, input: SignUpInput) {
+export async function createFirstUser(ctx: AdminContext, input: CreateFirstUserInput) {
   try {
     if (input.password !== input.confirmPassword)
       throw new TRPCError({
         message: "Passwords do not match",
         code: "BAD_REQUEST",
       });
+    
+    const existingFirstAdminUser = await ctx.db.query.users.findFirst({
+      where: (t, { eq }) => eq(t.role, "admin"),
+    })
+
+    if (existingFirstAdminUser) 
+      throw new TRPCError({
+        code: "CONFLICT",
+        message: "First admin user already exists",
+      })
 
     const hashedPassword = await new Scrypt().hash(input.password);
 
@@ -22,6 +32,7 @@ export async function signUp(ctx: TRPCContext, input: SignUpInput) {
         name: input.name,
         email: input.email,
         password: hashedPassword,
+        role: "admin",
       })
       .returning();
 
@@ -36,14 +47,10 @@ export async function signUp(ctx: TRPCContext, input: SignUpInput) {
   } catch (error) {
     if (error instanceof postgres.PostgresError && error.code === "23505") {
       throw new TRPCError({
-        message: "Email already exists",
+        message: "Account already exists",
         code: "CONFLICT",
       });
     }
-    // console.log(error)
-    throw new TRPCError({
-      message: "Something went wrong!",
-      code: "INTERNAL_SERVER_ERROR",
-    });
+    throw error
   }
 }

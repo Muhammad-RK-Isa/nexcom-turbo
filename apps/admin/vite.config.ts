@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   server: {
     proxy: {
-      "/api/trpc": {
+      "/api/trpc/admin": {
         target: process.env.SERVER_URL ?? "http://localhost:8000",
         changeOrigin: true,
       },
@@ -25,6 +25,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "~": path.resolve(__dirname, "./src"),
+      "@nexcom/ui": path.resolve(__dirname, "../../packages/ui/src"),
     },
   },
 });

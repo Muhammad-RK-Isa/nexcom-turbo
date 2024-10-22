@@ -19,7 +19,7 @@ export const users = pgTable(
       .notNull()
       .$defaultFn(() => generateId()),
     name: text("name").notNull(),
-    email: varchar("email", { length: 255 }).notNull(),
+    email: varchar("email", { length: 255 }).notNull().unique(),
     emailVerified: boolean("email_verified").notNull().default(false),
     avatar: text("avatar"),
     password: varchar("password", { length: 255 }),

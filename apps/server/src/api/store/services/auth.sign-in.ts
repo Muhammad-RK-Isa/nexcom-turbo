@@ -1,8 +1,8 @@
 import type { SignInInput } from "@nexcom/validators";
-import type { TRPCContext } from "../trpc";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "lucia";
-import { lucia } from "../../auth/lucia";
+import { lucia } from "../../../auth/lucia";
+import type { TRPCContext } from "../trpc";
 
 export async function signIn(ctx: TRPCContext, input: SignInInput) {
   const user = await ctx.db.query.users.findFirst({

@@ -33,6 +33,10 @@ export const signUpSchema = z
 
 export type SignUpInput = z.infer<typeof signUpSchema>;
 
+export const createFirstUserSchema = signUpSchema;
+
+export type CreateFirstUserInput = z.infer<typeof signUpSchema>;
+
 export const signInSchema = z.object({
   password: z
     .string()

@@ -1,18 +1,18 @@
+import { trpcServer } from "@hono/trpc-server";
 import { Hono } from "hono";
 import { serveStatic } from "hono/bun";
-import { trpcServer } from "@hono/trpc-server";
-import { createTRPCContext } from "./api/trpc";
-import { appRouter } from "./api";
 import { join } from "path";
+import { adminRouter } from "./api";
+import { createAdminContext } from "./api/admin/trpc";
 
 const app = new Hono();
 
 app.use(
-  "/api/trpc/*",
+  "/api/trpc/admin/*",
   trpcServer({
-    router: appRouter,
-    createContext: createTRPCContext,
-    endpoint: "/api/trpc",
+    router: adminRouter,
+    createContext: createAdminContext,
+    endpoint: "/api/trpc/admin",
   }),
 );
 

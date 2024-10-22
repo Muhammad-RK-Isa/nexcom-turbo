@@ -1,23 +1,21 @@
 import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { unstable_httpBatchStreamLink, httpBatchLink } from "@trpc/client";
+import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact, createTRPCQueryUtils } from "@trpc/react-query";
-import { type AppRouter } from "@nexcom/server";
+import { type AdminRouter } from "@nexcom/server";
+import SuperJSON from "superjson";
 
 import { routeTree } from "./routeTree.gen";
-import SuperJSON from "superjson";
 
 export const queryClient = new QueryClient();
 
-export const api = createTRPCReact<AppRouter>();
-
-// Unnecessary change
+export const api = createTRPCReact<AdminRouter>();
 
 const trpcClient = api.createClient({
   links: [
     httpBatchLink({
       transformer: SuperJSON,
-      url: "/api/trpc",
+      url: "/api/trpc/admin",
       fetch: (url, opts) => {
         return fetch(url, {
           ...opts,
@@ -38,7 +36,7 @@ export function createRouter() {
     routeTree,
     defaultPreload: "intent",
     context: {
-      trpc: trpcQueryUtils,
+      trpcQueryUtils,
     },
     defaultPendingComponent: () => (
       <div className={`p-2 text-2xl`}>(Global) Loading...</div>
