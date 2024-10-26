@@ -19,10 +19,10 @@ app.use(
 
 app.all("/api/uploadthing", (context) => handlers(context.req.raw));
 
-app.get("*", serveStatic({ root: join(process.cwd(), "../admin/dist") }));
+app.get("*", serveStatic({ root: "./dist/static"}));
 app.get(
   "*",
-  serveStatic({ path: join(process.cwd(), "../admin/dist/index.html") }),
+  serveStatic({ path: join(process.cwd(), "./dist/static/index.html") }),
 );
 
 Bun.serve({

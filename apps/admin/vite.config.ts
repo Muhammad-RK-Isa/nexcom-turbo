@@ -28,4 +28,7 @@ export default defineConfig({
       "@nexcom/ui": path.resolve(__dirname, "../../packages/ui/src"),
     },
   },
+  build: {
+    outDir: path.resolve(__dirname, "../server/dist/static"),
+  }
 });

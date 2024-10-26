@@ -5,11 +5,11 @@ import { RootSidebar } from '~/components/root-sidebar'
 
 export const Route = createFileRoute('/_root-layout')({
   beforeLoad: async ({ context, location }) => {
-    const { user } = await context.trpcQueryUtils.auth.getUser.ensureData()
-    if (user === null) throw redirect({
-      to: "/sign-in",
-      search: { callbackUrl: location.href }
-    })
+    // const { user } = await context.trpcQueryUtils.auth.getUser.ensureData()
+    // if (user === null) throw redirect({
+    //   to: "/sign-in",
+    //   search: { callbackUrl: location.href }
+    // })
   },
   component: () => <RootLayoutComponent />,
 })
