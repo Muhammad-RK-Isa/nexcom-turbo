@@ -1,4 +1,4 @@
-import { Button } from "@nexcom/ui/components/ui/button";
+import { Button } from "@nexcom/ui/components/button";
 import React from "react";
 import { api } from "~/lib/trpc/server";
 

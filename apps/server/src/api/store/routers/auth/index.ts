@@ -1,8 +1,8 @@
-import { signInSchema, signUpSchema } from "@nexcom/validators";
-import { signIn } from "../../services/auth.sign-in";
-import { createRouter, protectedProcedure, publicProcedure } from "../../trpc";
-import { signUp } from "../../services/auth.sign-up";
+import { signInSchema, signUpSchema } from "@nexcom/validators/admin";
 import { lucia } from "../../../../auth/lucia";
+import { signIn } from "../../services/auth.sign-in";
+import { signUp } from "../../services/auth.sign-up";
+import { createRouter, protectedProcedure, publicProcedure } from "../../trpc";
 
 export const authRouter = createRouter({
   signIn: publicProcedure

@@ -4,6 +4,7 @@ import { serveStatic } from "hono/bun";
 import { join } from "path";
 import { adminRouter } from "./api";
 import { createAdminContext } from "./api/admin/trpc";
+import { handlers } from "./api/uploadthing/router";
 
 const app = new Hono();
 
@@ -15,6 +16,8 @@ app.use(
     endpoint: "/api/trpc/admin",
   }),
 );
+
+app.all("/api/uploadthing", (context) => handlers(context.req.raw));
 
 app.get("*", serveStatic({ root: join(process.cwd(), "../admin/dist") }));
 app.get(

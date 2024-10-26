@@ -10,7 +10,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@nexcom/ui/components/ui/avatar"
+} from "@nexcom/ui/components/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -25,13 +25,13 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@nexcom/ui/components/ui/dropdown-menu"
+} from "@nexcom/ui/components/dropdown-menu"
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@nexcom/ui/components/ui/sidebar"
+} from "@nexcom/ui/components/sidebar"
 import { useTheme } from "~/components/theme-provider"
 import { api, trpcQueryUtils } from "~/router"
 import { useLocation, useNavigate, useRouter } from "@tanstack/react-router"

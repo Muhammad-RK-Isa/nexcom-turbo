@@ -1,4 +1,4 @@
-import type { SignInInput } from "@nexcom/validators";
+import type { SignInInput } from "@nexcom/validators/admin";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "lucia";
 import { lucia } from "../../../auth/lucia";

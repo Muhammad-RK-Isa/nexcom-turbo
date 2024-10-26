@@ -2,28 +2,28 @@ import React from 'react'
 import { createFileRoute, redirect } from '@tanstack/react-router'
 import { Link, useNavigate, useRouter } from '@tanstack/react-router'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema } from '@nexcom/validators'
+import { signInSchema } from '@nexcom/validators/admin'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import { EyeOff, Eye, MoveRight, Loader2 } from 'lucide-react'
 
-import type { SignInInput } from '@nexcom/validators'
-import { Input } from '@nexcom/ui/components/ui/input'
-import { Button } from '@nexcom/ui/components/ui/button'
+import type { SignInInput } from '@nexcom/validators/admin'
+import { Input } from '@nexcom/ui/components/input'
+import { Button } from '@nexcom/ui/components/button'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '@nexcom/ui/components/ui/form'
+} from '@nexcom/ui/components/form'
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@nexcom/ui/components/ui/card'
+} from '@nexcom/ui/components/card'
 import { api, trpcQueryUtils } from '~/router'
 import { authRouteSearchSchema } from '~/lib/validators'
 import { zodSearchValidator } from '@tanstack/router-zod-adapter'

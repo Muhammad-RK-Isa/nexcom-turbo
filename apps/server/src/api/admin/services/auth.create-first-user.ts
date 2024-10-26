@@ -1,8 +1,8 @@
+import { isPostgresError } from "@nexcom/db/lib/utils";
 import { users } from "@nexcom/db/schema";
-import type { CreateFirstUserInput} from "@nexcom/validators";
+import type { CreateFirstUserInput } from "@nexcom/validators/admin";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "oslo/password";
-import postgres from "postgres";
 import { lucia } from "../../../auth/lucia";
 import type { AdminContext } from "../trpc";
 
@@ -45,7 +45,7 @@ export async function createFirstUser(ctx: AdminContext, input: CreateFirstUserI
 
     return { success: true };
   } catch (error) {
-    if (error instanceof postgres.PostgresError && error.code === "23505") {
+    if (isPostgresError(error) && error.code === "23505") {
       throw new TRPCError({
         message: "Account already exists",
         code: "CONFLICT",

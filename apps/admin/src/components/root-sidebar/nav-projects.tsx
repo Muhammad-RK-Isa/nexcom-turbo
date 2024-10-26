@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@nexcom/ui/components/ui/dropdown-menu"
+} from "@nexcom/ui/components/dropdown-menu"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -21,7 +21,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@nexcom/ui/components/ui/sidebar"
+} from "@nexcom/ui/components/sidebar"
 
 export function NavProjects({
   projects,

@@ -2,7 +2,10 @@
   "name": "@nexcom/validators",
   "version": "0.0.0",
   "private": true,
-  "main": "src/index.ts",
+  "exports": {
+    "./admin": "./src/admin/index.ts",
+    "./store": "./src/store/index.ts"
+  },
   "scripts": {
     "build": "tsc",
     "clean": "git clean -xdf .cache .turbo dist node_modules",

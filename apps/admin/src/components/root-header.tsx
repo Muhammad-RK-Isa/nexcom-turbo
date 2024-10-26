@@ -1,5 +1,5 @@
 import React from 'react'
-import { SidebarTrigger } from '@nexcom/ui/components/ui/sidebar'
+import { SidebarTrigger } from '@nexcom/ui/components/sidebar'
 
 export default function RootHeader() {
   return (

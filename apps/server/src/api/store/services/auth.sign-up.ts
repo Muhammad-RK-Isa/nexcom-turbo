@@ -1,5 +1,5 @@
 import { users } from "@nexcom/db/schema";
-import type { SignUpInput } from "@nexcom/validators";
+import type { SignUpInput } from "@nexcom/validators/admin";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "lucia";
 import postgres from "postgres";

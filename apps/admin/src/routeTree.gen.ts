@@ -18,6 +18,9 @@ import { Route as RootLayoutProfileImport } from './routes/_root-layout/profile'
 import { Route as RootLayoutAboutImport } from './routes/_root-layout/about'
 import { Route as AuthLayoutSignInImport } from './routes/_auth-layout/sign-in'
 import { Route as AuthLayoutCreateFirstUserImport } from './routes/_auth-layout/create-first-user'
+import { Route as RootLayoutProductsIndexImport } from './routes/_root-layout/products/index'
+import { Route as RootLayoutProductsNewImport } from './routes/_root-layout/products/new'
+import { Route as RootLayoutProductsIdImport } from './routes/_root-layout/products/$id'
 
 // Create/Update Routes
 
@@ -54,6 +57,21 @@ const AuthLayoutSignInRoute = AuthLayoutSignInImport.update({
 const AuthLayoutCreateFirstUserRoute = AuthLayoutCreateFirstUserImport.update({
   path: '/create-first-user',
   getParentRoute: () => AuthLayoutRoute,
+} as any)
+
+const RootLayoutProductsIndexRoute = RootLayoutProductsIndexImport.update({
+  path: '/products/',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutProductsNewRoute = RootLayoutProductsNewImport.update({
+  path: '/products/new',
+  getParentRoute: () => RootLayoutRoute,
+} as any)
+
+const RootLayoutProductsIdRoute = RootLayoutProductsIdImport.update({
+  path: '/products/$id',
+  getParentRoute: () => RootLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -109,6 +127,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RootLayoutIndexImport
       parentRoute: typeof RootLayoutImport
     }
+    '/_root-layout/products/$id': {
+      id: '/_root-layout/products/$id'
+      path: '/products/$id'
+      fullPath: '/products/$id'
+      preLoaderRoute: typeof RootLayoutProductsIdImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/products/new': {
+      id: '/_root-layout/products/new'
+      path: '/products/new'
+      fullPath: '/products/new'
+      preLoaderRoute: typeof RootLayoutProductsNewImport
+      parentRoute: typeof RootLayoutImport
+    }
+    '/_root-layout/products/': {
+      id: '/_root-layout/products/'
+      path: '/products'
+      fullPath: '/products'
+      preLoaderRoute: typeof RootLayoutProductsIndexImport
+      parentRoute: typeof RootLayoutImport
+    }
   }
 }
 
@@ -132,12 +171,18 @@ interface RootLayoutRouteChildren {
   RootLayoutAboutRoute: typeof RootLayoutAboutRoute
   RootLayoutProfileRoute: typeof RootLayoutProfileRoute
   RootLayoutIndexRoute: typeof RootLayoutIndexRoute
+  RootLayoutProductsIdRoute: typeof RootLayoutProductsIdRoute
+  RootLayoutProductsNewRoute: typeof RootLayoutProductsNewRoute
+  RootLayoutProductsIndexRoute: typeof RootLayoutProductsIndexRoute
 }
 
 const RootLayoutRouteChildren: RootLayoutRouteChildren = {
   RootLayoutAboutRoute: RootLayoutAboutRoute,
   RootLayoutProfileRoute: RootLayoutProfileRoute,
   RootLayoutIndexRoute: RootLayoutIndexRoute,
+  RootLayoutProductsIdRoute: RootLayoutProductsIdRoute,
+  RootLayoutProductsNewRoute: RootLayoutProductsNewRoute,
+  RootLayoutProductsIndexRoute: RootLayoutProductsIndexRoute,
 }
 
 const RootLayoutRouteWithChildren = RootLayoutRoute._addFileChildren(
@@ -151,6 +196,9 @@ export interface FileRoutesByFullPath {
   '/about': typeof RootLayoutAboutRoute
   '/profile': typeof RootLayoutProfileRoute
   '/': typeof RootLayoutIndexRoute
+  '/products/$id': typeof RootLayoutProductsIdRoute
+  '/products/new': typeof RootLayoutProductsNewRoute
+  '/products': typeof RootLayoutProductsIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -160,6 +208,9 @@ export interface FileRoutesByTo {
   '/about': typeof RootLayoutAboutRoute
   '/profile': typeof RootLayoutProfileRoute
   '/': typeof RootLayoutIndexRoute
+  '/products/$id': typeof RootLayoutProductsIdRoute
+  '/products/new': typeof RootLayoutProductsNewRoute
+  '/products': typeof RootLayoutProductsIndexRoute
 }
 
 export interface FileRoutesById {
@@ -171,6 +222,9 @@ export interface FileRoutesById {
   '/_root-layout/about': typeof RootLayoutAboutRoute
   '/_root-layout/profile': typeof RootLayoutProfileRoute
   '/_root-layout/': typeof RootLayoutIndexRoute
+  '/_root-layout/products/$id': typeof RootLayoutProductsIdRoute
+  '/_root-layout/products/new': typeof RootLayoutProductsNewRoute
+  '/_root-layout/products/': typeof RootLayoutProductsIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -182,8 +236,20 @@ export interface FileRouteTypes {
     | '/about'
     | '/profile'
     | '/'
+    | '/products/$id'
+    | '/products/new'
+    | '/products'
   fileRoutesByTo: FileRoutesByTo
-  to: '' | '/create-first-user' | '/sign-in' | '/about' | '/profile' | '/'
+  to:
+    | ''
+    | '/create-first-user'
+    | '/sign-in'
+    | '/about'
+    | '/profile'
+    | '/'
+    | '/products/$id'
+    | '/products/new'
+    | '/products'
   id:
     | '__root__'
     | '/_auth-layout'
@@ -193,6 +259,9 @@ export interface FileRouteTypes {
     | '/_root-layout/about'
     | '/_root-layout/profile'
     | '/_root-layout/'
+    | '/_root-layout/products/$id'
+    | '/_root-layout/products/new'
+    | '/_root-layout/products/'
   fileRoutesById: FileRoutesById
 }
 
@@ -234,7 +303,10 @@ export const routeTree = rootRoute
       "children": [
         "/_root-layout/about",
         "/_root-layout/profile",
-        "/_root-layout/"
+        "/_root-layout/",
+        "/_root-layout/products/$id",
+        "/_root-layout/products/new",
+        "/_root-layout/products/"
       ]
     },
     "/_auth-layout/create-first-user": {
@@ -255,6 +327,18 @@ export const routeTree = rootRoute
     },
     "/_root-layout/": {
       "filePath": "_root-layout/index.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/products/$id": {
+      "filePath": "_root-layout/products/$id.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/products/new": {
+      "filePath": "_root-layout/products/new.tsx",
+      "parent": "/_root-layout"
+    },
+    "/_root-layout/products/": {
+      "filePath": "_root-layout/products/index.tsx",
       "parent": "/_root-layout"
     }
   }

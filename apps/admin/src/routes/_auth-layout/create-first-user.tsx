@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { signInSchema, signUpSchema } from '@nexcom/validators'
+import { signInSchema, signUpSchema } from '@nexcom/validators/admin'
 import {
   createFileRoute,
   Link,
@@ -12,22 +12,22 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 
-import { Button } from '@nexcom/ui/components/ui/button'
+import { Button } from '@nexcom/ui/components/button'
 import {
   Card,
   CardContent,
   CardHeader,
   CardTitle,
-} from '@nexcom/ui/components/ui/card'
+} from '@nexcom/ui/components/card'
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-} from '@nexcom/ui/components/ui/form'
-import { Input } from '@nexcom/ui/components/ui/input'
-import type { SignUpInput } from '@nexcom/validators'
+} from '@nexcom/ui/components/form'
+import { Input } from '@nexcom/ui/components/input'
+import type { SignUpInput } from '@nexcom/validators/admin'
 import { z } from 'zod'
 import { api, trpcQueryUtils } from '~/router'
 

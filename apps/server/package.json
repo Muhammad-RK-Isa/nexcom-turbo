@@ -1,7 +1,12 @@
 {
   "name": "@nexcom/server",
   "version": "0.0.0",
-  "main": "src/api/index",
+  "main": "src/index.ts",
+  "exports": {
+    "./admin/*": "./src/api/admin/*.ts",
+    "./store/*": "./src/api/store/*.ts",
+    "./uploadthing/*": "./src/api/uploadthing/*.ts"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "bun --watch src/index.ts"
@@ -20,11 +25,11 @@
     "path": "^0.12.7",
     "postgres": "^3.4.4",
     "superjson": "^2.2.1",
+    "uploadthing": "^7.1.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/bun": "^1.1.11",
     "bun-types": "latest"
-  },
-  "module": "src/index.js"
+  }
 }

@@ -8,8 +8,8 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useMediaQuery } from "usehooks-ts";
 
 import { trpcQueryUtils } from "../router";
-import { Toaster } from "@nexcom/ui/components/ui/sonner";
-import { TooltipProvider } from "@nexcom/ui/components/ui/tooltip";
+import { Toaster } from "@nexcom/ui/components/sonner";
+import { TooltipProvider } from "@nexcom/ui/components/tooltip";
 import { useTheme } from "~/components/theme-provider";
 
 export interface RouterAppContext {

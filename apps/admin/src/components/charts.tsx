@@ -26,13 +26,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@nexcom/ui/components/ui/card";
+} from "@nexcom/ui/components/card";
 import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@nexcom/ui/components/ui/chart";
-import { Separator } from "@nexcom/ui/components/ui/separator";
+} from "@nexcom/ui/components/chart";
+import { Separator } from "@nexcom/ui/components/separator";
 
 export const description = "A collection of health charts.";
 

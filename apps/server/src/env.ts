@@ -7,6 +7,7 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["production", "development", "test"])
       .default("development"),
+    UPLOADTHING_TOKEN: z.string(),
   },
 
   /**

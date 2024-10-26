@@ -1,9 +1,9 @@
-import type { SignInInput } from "@nexcom/validators";
+import type { SignInInput } from "@nexcom/validators/admin";
 import { TRPCError } from "@trpc/server";
 import { Scrypt } from "lucia";
 import { lucia } from "../../../auth/lucia";
-import type { AdminContext } from "../trpc";
 import { getRandomSentence } from "../../../lib/utils";
+import type { AdminContext } from "../trpc";
 
 export async function signIn(ctx: AdminContext, input: SignInInput) {
   const user = await ctx.db.query.users.findFirst({

@@ -1,4 +1,4 @@
-import { SidebarProvider } from '@nexcom/ui/components/ui/sidebar'
+import { SidebarProvider } from '@nexcom/ui/components/sidebar'
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
 import RootHeader from '~/components/root-header'
 import { RootSidebar } from '~/components/root-sidebar'
@@ -6,7 +6,6 @@ import { RootSidebar } from '~/components/root-sidebar'
 export const Route = createFileRoute('/_root-layout')({
   beforeLoad: async ({ context, location }) => {
     const { user } = await context.trpcQueryUtils.auth.getUser.ensureData()
-    console.log(user)
     if (user === null) throw redirect({
       to: "/sign-in",
       search: { callbackUrl: location.href }

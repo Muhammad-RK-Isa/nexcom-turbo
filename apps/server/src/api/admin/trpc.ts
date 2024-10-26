@@ -73,7 +73,12 @@ export const protectedAdminProcedure = t.procedure.use(({ ctx, next }) => {
       message: "You must be logged in to perform this action",
     });
   }
-  return next();
+  return next({
+    ctx: {
+      user: ctx.user,
+      session: ctx.session,
+    }
+  });
 });
 
 export type AdminContext = Awaited<ReturnType<typeof createAdminContext>>;

@@ -1,6 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
+  "style": "new-york",
   "rsc": true,
   "tsx": true,
   "tailwind": {
@@ -12,7 +12,7 @@
   },
   "aliases": {
     "components": "@nexcom/ui/components",
-    "ui": "@nexcom/ui/components/ui",
+    "ui": "@nexcom/ui/components",
     "utils": "@nexcom/ui/lib/utils",
     "lib": "@nexcom/ui/lib",
     "hooks": "@nexcom/ui/hooks"

@@ -23,7 +23,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@nexcom/ui/components/ui/sidebar"
+} from "@nexcom/ui/components/sidebar"
 
 const data = {
   navMain: [

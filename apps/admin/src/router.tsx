@@ -2,7 +2,7 @@ import { createRouter as createTanStackRouter } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
 import { createTRPCReact, createTRPCQueryUtils } from "@trpc/react-query";
-import { type AdminRouter } from "@nexcom/server";
+import { type AdminRouter } from "@nexcom/server/admin/root";
 import SuperJSON from "superjson";
 
 import { routeTree } from "./routeTree.gen";

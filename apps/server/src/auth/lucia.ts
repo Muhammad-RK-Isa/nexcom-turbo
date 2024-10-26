@@ -22,11 +22,10 @@ export const lucia = new Lucia(adapter, {
       updatedAt: attributes.updatedAt,
     };
   },
-  sessionExpiresIn: new TimeSpan(30, "d"),
+  sessionExpiresIn: new TimeSpan(1, "d"),
   sessionCookie: {
     name: "session",
-
-    expires: false, // session cookies have very long lifespan (2 years)
+    expires: true ,
     attributes: {
       secure: env.NODE_ENV === "production",
     },

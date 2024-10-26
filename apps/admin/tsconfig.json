@@ -19,6 +19,6 @@
     "**/*.mjs",
     "**/*.js",
     "postcss.config.mjs"
-  ],
+, "../../packages/ui/src/components/focus-modal.tsx"  ],
   "exclude": ["node_modules", "dist"]
 }

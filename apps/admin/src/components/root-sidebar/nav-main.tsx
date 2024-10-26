@@ -4,7 +4,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@nexcom/ui/components/ui/collapsible"
+} from "@nexcom/ui/components/collapsible"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -15,7 +15,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@nexcom/ui/components/ui/sidebar"
+} from "@nexcom/ui/components/sidebar"
 
 export function NavMain({
   items,
